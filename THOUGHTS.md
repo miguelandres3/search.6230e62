@@ -3,7 +3,7 @@
 For the api a repository pattern is used. There are three layers involved. A repository layer in charged of accessing the data in the files that can be easily replaced for other types of storage without affecting the rest of the application. A service layer that contains the business logic and finally a controller layer that manages the requests from the api.
 
 Indexing based on geo hashes combined with a brute force distance comparison was used for the proximity search algorithm.
-The data is pre-processed storing the geo hashes for every shop using 6 characters as index. To find the stores around a location the geo hash for the location is calculated using the same amount of characters producing a hash that is used to get the shops. For extreme cases around the boundaries of the hash the surrounding hashes are also included. After this a brute force filter is applied over the subset for accuracy. For bigger radiuses more surroundings are included in the subset.
+The data is pre-processed storing the geo hashes for every shop using 6 characters as index. To find the stores around a location the geo hash for the location is calculated using the same amount of characters. This produces a hash that is used to index the shops. For extreme cases around the boundaries of the hash the surrounding hashes are also included. After this a brute force filter is applied over the subset for accuracy. For bigger radiuses more surroundings are included in the subset.
 
 ##Concepts used
 * Dependency Injection
