@@ -3,6 +3,14 @@ from collections import defaultdict
 
 import geohash
 
+"""
+    geo hash grid generator
+
+    Generates the grid of geo hashes levels indicates how many
+    layers of surroundings are desired depending on the radius
+
+    """
+
 
 # gets the surroundings of the hash and the surroundings of the surrounding depending on the radius
 def get_surroundings_grid(geo_hash, levels):

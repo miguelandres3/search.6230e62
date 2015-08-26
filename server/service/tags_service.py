@@ -1,5 +1,16 @@
 __author__ = 'miguelandres'
 
+"""
+    TagsService
+
+    Business layer class in charged of handling information from tags and taggings
+
+
+    Attributes:
+    ===========
+    Instances of taggins repository and tags repository
+
+    """
 
 class TagsService:
     def __init__(self, tags_repository, taggings_repository):

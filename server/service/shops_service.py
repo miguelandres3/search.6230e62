@@ -5,6 +5,26 @@ import time
 import geohash
 from server.service.geo_hash_grid_generator import get_surroundings_grid
 
+"""
+    ShopsService
+
+    Business layer class in charged doing queries over shops based on proximity and tasks
+
+    The search by tags uses the tag service to retrieve the shops ids for a particular tag and
+    then intersects them with the location filter
+
+    The location filter uses an index based on a geo hash in the shops repository.
+
+    The shops are retrieved by geo hash for the location bringing all the shops that belong to the geo hash.
+
+    It's necesary to include the surroundings of the geo hash to include the stores outside the boundaries of the geo hash
+
+
+    Attributes:
+    ===========
+    Instances of shops repository and tags service
+
+    """
 
 class ShopsService:
     def __init__(self, shops_repository, tags_service, hash_size):
@@ -43,16 +63,13 @@ class ShopsService:
 
     # filters a set of shops using brute force using the vicenty algorithm
     def filter_brute_force(self, lat, long, range, shops):
-        start_time = time.clock()
         currentlocation = (lat, long)
 
         shopsfiltered = dict()
-        print('shops to filter: ' + str(len(shops)))
         for shop in shops:
             shoplocation = (shop.lat, shop.long)
             # distance calculation
             distance = vincenty(currentlocation, shoplocation).meters
             if distance < range:
                 shopsfiltered[shop.id] = shop
-        print('time narrow filter: ' + str(time.clock() - start_time) + " seconds")
         return shopsfiltered.keys()

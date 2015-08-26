@@ -3,6 +3,14 @@ __author__ = 'miguelandres'
 from flask import current_app
 import time
 
+"""
+    Products controller
+
+    Layer that gets the list of shop_ids with the filtering criteria and retrieves the list of products
+
+    """
+
+
 class ProductsController:
     def __init__(self, shops_service, products_service):
         self.shops_service = shops_service
