@@ -1,4 +1,4 @@
-from server.service.geo_hash_generator import get_surroundings_grid
+from server.service.geo_hash_grid_generator import get_surroundings_grid
 
 
 def test_get_shops_dictionary_hashed_500radius_should_be_9():
